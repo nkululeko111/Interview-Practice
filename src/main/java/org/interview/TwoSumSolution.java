@@ -1,18 +1,16 @@
 package org.interview;
-
+import java.util.*;
 import java.util.HashMap;
 
 
 /* **Problem Statement:**
-Given an array of integers `nums` and an integer `target`, return indices of the two numbers such that they add up to `target`.
-You may assume that each input would have exactly one solution, and you may not use the same element twice.
-You can return the answer in any order.
-
+Given an array of integers `nums` and an integer `target`, return indices of the two numbers such
+that they add up to `target`.You may assume that each input would have exactly one solution,
+and you may not use the same element twice.You can return the answer in any order.
 **Example:**
 Input: `nums = [2, 7, 11, 15]`, `target = 9`
 Output: `[0, 1]`
 Explanation: `nums[0] + nums[1] = 2 + 7 = 9`.  */
-import java.util.*;
 
 public class TwoSumSolution {
     public static int[] twoSum(int[] nums, int target) {
@@ -29,8 +27,6 @@ public class TwoSumSolution {
         System.out.println(Arrays.toString(twoSum(new int[]{2, 7, 11, 15}, 9)));
     }
 
-
-
    /*  **Explanation:**
 - We use a `HashMap` to store the value and its index as we iterate through the array.
 - For each element, we calculate its complement (`target - nums[i]`).
@@ -39,44 +35,43 @@ public class TwoSumSolution {
  */
 }
 
-
-/* ### **2. Reverse a String (HackerRank)**
-        **Problem Statement:**
+/// 2. Reverse a String (HackerRank)
+/*     **Problem Statement:**
 Write a function that reverses a string. The input string is given as an array of characters `s`.
 You must do this by modifying the input array in-place with `O(1)` extra memory.
-
         **Example:**
 Input: `s = ["h", "e", "l", "l", "o"]`
 Output: `["o", "l", "l", "e", "h"]`
-
         **Solution:** */
 
-class ReverseString {
-    public void reverseString(char[] s) {
-        int left = 0, right = s.length - 1;
-        while (left < right) {
-            char temp = s[left];
-            s[left] = s[right];
-            s[right] = temp;
-            left++;
-            right--;
-        }
+class ReverseRString {
+    public static void main(String[] args) {
+        String test = "jesus";  // Declare and initialize the string variable "test"
+
+        // Reverse using StringBuilder and print the reversed string
+        System.out.println("Reversed string: " + new StringBuilder(test).reverse().toString());
     }
 }
 
-
 /*
-        **Explanation:**
-- Use two pointers, `left` and `right`, initialized to the start and end of the array.
-- Swap the characters at the `left` and `right` pointers.
-- Move the `left` pointer forward and the `right` pointer backward until they meet.
+Explanation:
+### Summary:
+The `StringBuilder` class in Java allows creating **mutable** (modifiable) sequences of characters.
+When initialized with `test`, it holds the string `"jesus"`. The `.reverse()` method efficiently reverse
+the string to `"susej"`, and `.toString()` converts it back to an immutable `String` for output.
+
+#### **Advantages:**
+- **Concise & Readable** – Uses built-in Java methods in minimal lines.
+- **Efficient** – Optimized for fast string operations.
+- **Performance** – Avoids creating multiple `String` objects by modifying characters in place.
 */
 
-/*3. Fibonacci Number (LeetCode)
-        **Problem Statement:**
-The Fibonacci numbers, commonly denoted `F(n)`, form a sequence called the Fibonacci sequence, such that each number is the sum of the two preceding ones, starting from `0` and `1`.
-Given `n`, calculate `F(n)`.
 
+///3. Fibonacci Number (LeetCode)
+/*    **Problem Statement:**
+The Fibonacci numbers, commonly denoted `F(n)`, form a sequence called the Fibonacci sequence,
+such that each number is the sum of the two preceding ones, starting from `0` and `1`.
+Given `n`, calculate `F(n)`.
         **Example:**
 Input: `n = 4`
 Output: `3`
@@ -86,35 +81,43 @@ Explanation: `F(4) = F(3) + F(2) = 2 + 1 = 3`.
 
 class Fibonacci {
     public int fib(int n) {
-        if (n <= 1) return n;
-        int a = 0, b = 1;
-        for (int i = 2; i <= n; i++) {
-            int sum = a + b;
-            a = b;
-            b = sum;
-        }
-        return b;
+        return (n <= 1) ? n : fib(n - 1) + fib(n - 2);
+    }
+
+    public static void main(String[] args) {
+        Fibonacci fib = new Fibonacci();
+        System.out.println(fib.fib(9));  // Prints 34
     }
 }
 
-
  /*        **Explanation:**
-- Use an iterative approach to avoid the overhead of recursion.
-- Initialize `a` and `b` to `0` and `1`, representing `F(0)` and `F(1)`.
-- Iterate from `2` to `n`, updating `a` and `b` to store the last two Fibonacci numbers.
-
+The `return` statement in the `fib` method uses the **ternary operator**,
+which is a shorthand for an `if-else` statement. The syntax is
+condition ? expression_if_true : expression_if_false;
+In the case of the Fibonacci function, the return statement looks like this:
+return (n <= 1) ? n : fib(n - 1) + fib(n - 2);
+Here, the condition `(n <= 1)` checks if the input `n` is less than or equal to 1.
+If this condition is **true**, it returns `n` because the first two Fibonacci numbers are `0` and `1`, and
+these are the base cases of the Fibonacci sequence. If the condition is **false** (i.e., `n` is greater than 1),
+it proceeds to the second part of the ternary operator, which calls the `fib` method recursively for `fib(n - 1)`
+and `fib(n - 2)`, adding the two results together.
+This recursive process continues until the base cases (`n = 0` or `n = 1`) are reached.
+In summary, the ternary operator provides a concise way to handle the two cases of the Fibonacci sequence:
+directly returning the number if `n <= 1`, or recursively calculating the sum of the previous two Fibonacci numbers
+ if `n > 1`.
  */
 
-//        ### **4. Valid Parentheses (LeetCode)**
+
+/// 4. Valid Parentheses (LeetCode)
 //        **Problem Statement:**
-//Given a string `s` containing just the characters `(`, `)`, `{`, `}`, `[`, and `]`, determine if the input string is valid.
+//Given a string s containing just the characters (, ), {, }, [, and ], determine if the input string is valid.
 //An input string is valid if:
 //        1. Open brackets must be closed by the same type of brackets.
 //2. Open brackets must be closed in the correct order.
 //
 //**Example:** */
-/* Input: `s = "()[]{}"`
-Output: `true`
+/* Input: s = "()[]{}"
+Output: true
 
         **Solution:**
          */
@@ -123,36 +126,34 @@ class ValidParentheses {
     public boolean isValid(String s) {
         Stack<Character> stack = new Stack<>();
         for (char c : s.toCharArray()) {
-            if (c == '(' || c == '{' || c == '[') {
-                stack.push(c);
-            } else {
-                if (stack.isEmpty()) return false;
-                char top = stack.pop();
-                if ((c == ')' && top != '(') ||
-                        (c == '}' && top != '{') ||
-                        (c == ']' && top != '[')) {
-                    return false;
-                }
-            }
+            if ("({[".indexOf(c) != -1) stack.push(c);
+            else if (stack.isEmpty() || "({[".indexOf(stack.pop()) != ")}]".indexOf(c)) return false;
         }
         return stack.isEmpty();
     }
+
+    public static void main(String[] args) {
+        ValidParentheses vp = new ValidParentheses();
+        System.out.println(vp.isValid("[]"));
+        System.out.println(vp.isValid("()[]{}"));
+        System.out.println(vp.isValid("(]"));
+        System.out.println(vp.isValid("([{}])"));
+    }
 }
 
-
 /*
-        **Explanation:**
-- Use a stack to keep track of opening brackets.
-- For every closing bracket, check if it matches the top of the stack.
-- If the stack is empty or the brackets don’t match, return `false`.
-- Finally, ensure the stack is empty to confirm all brackets are closed.
-
+        ### **How It Works:**
+        - Push **opening brackets** onto the stack.
+- For **closing brackets**, check if they match the last opened one.
+        - If mismatched or stack is empty when closing, return `false`.
+        - Return `true` if all brackets are closed properly.
 */
 
 
-/* ### **5. Merge Two Sorted Lists (LeetCode)**
-        **Problem Statement:**
-Merge two sorted linked lists and return it as a sorted list. The list should be made by splicing together the nodes of the first two lists.
+/// 5. Merge Two Sorted Lists (LeetCode)
+/* *Problem Statement:**
+Merge two sorted linked lists and return it as a sorted list.
+The list should be made by splicing together the nodes of the first two lists.
 
 **Example:**
 Input: `l1 = [1, 2, 4]`, `l2 = [1, 3, 4]`
@@ -194,8 +195,8 @@ class MergeTwoSortedLists {
 */
 
 
-
-/* 1. Find the First Non-Repeating Character in a String
+/// 1. Find the First Non-Repeating Character in a String
+/*
 Problem Statement:
 Given a string s, find the first non-repeating character and return its index. If it doesn't exist, return -1.
 Example:
@@ -207,25 +208,30 @@ Solution: */
 
 class FirstUniqueCharacter {
     public int firstUniqChar(String s) {
-        HashMap<Character, Integer> countMap = new HashMap<>();
-        for (char c : s.toCharArray()) {
-            countMap.put(c, countMap.getOrDefault(c, 0) + 1);
-        }
-        for (int i = 0; i < s.length(); i++) {
-            if (countMap.get(s.charAt(i)) == 1) {
-                return i;
-            }
-        }
-        return -1;
+        return s.chars().mapToObj(c -> (char) c)
+                .filter(c -> s.indexOf(c) == s.lastIndexOf(c))
+                .mapToInt(s::indexOf)
+                .findFirst().orElse(-1);
+    }
+
+    public static void main(String[] args) {
+        FirstUniqueCharacter fu = new FirstUniqueCharacter();
+        String tec = "loveleetcode";
+        String tecs = "leetcode";
+        System.out.println("number of characters: "+ fu.firstUniqChar(tec));
+        System.out.println("number of characters: "+fu.firstUniqChar(tecs));
+
     }
 }
 
 /* Explanation:
 Use a HashMap to store character frequencies.
-Traverse the string again to find the first character with a frequency of 1.
+Traverse the string again to find the first character with a frequency of 1. */
 
-2. Check If a Number is Prime
-Problem Statement:
+
+
+///2. Check If a Number is Prime
+/* Problem Statement:
 Write a function to check whether a given integer n is prime.
 Example:
 Input: 7
@@ -242,15 +248,20 @@ class PrimeNumber {
         }
         return true;
     }
+
+    public static void main(String[] args) {
+        PrimeNumber pr = new PrimeNumber();
+        System.out.println("is it prime: "+ pr.isPrime(10));
+    }
 }
 
 /* Explanation:
 Any number ≤1 is not prime.
 Check divisibility from 2 to sqrt(n).
-If n is divisible by any number in this range, it is not prime.
+If n is divisible by any number in this range, it is not prime. */
 
-3. Find the Missing Number in an Array
-Problem Statement:
+///3. Find the Missing Number in an Array
+/*Problem Statement:
 Given an array containing n distinct numbers taken from 0, 1, 2, ..., n, find the missing number.
 Example:
 Input: [3, 0, 1]
@@ -266,75 +277,68 @@ class MissingNumber {
         }
         return sum;
     }
+
+    public static void main(String[] args) {
+        MissingNumber ms = new MissingNumber();
+        System.out.println(ms.missingNumber(new int[]{3, 0, 1}));
+    }
 }
 
 /* Explanation:
 The sum of first n natural numbers is n * (n + 1) / 2.
-Subtract each number in the array from this sum to get the missing number.
+Subtract each number in the array from this sum to get the missing number.*/
 
-4. Find the Longest Common Prefix in a Set of Strings
-Problem Statement:
+///4. Find the Longest Common Prefix in a Set of Strings
+/* Problem Statement:
 Write a function to find the longest common prefix among an array of strings.
 Example:
 Input: ["flower", "flow", "flight"]
 Output: "fl"
 Solution: */
 
- class LongestCommonPrefix {
-    public String longestCommonPrefix(String[] strs) {
-        if (strs == null || strs.length == 0) return "";
+class LongestCommonPrefix {
+    String longestCommonPrefix(String[] strs) {
         String prefix = strs[0];
-        for (int i = 1; i < strs.length; i++) {
-            while (strs[i].indexOf(prefix) != 0) {
+        for (String s : strs)
+            while (!s.startsWith(prefix))
                 prefix = prefix.substring(0, prefix.length() - 1);
-                if (prefix.isEmpty()) return "";
-            }
-        }
         return prefix;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(new LongestCommonPrefix().longestCommonPrefix(
+                new String[]{"flower", "flow", "flight"}));
     }
 }
 
 /* Explanation:
 Start with the first string as the prefix.
-Iterate over other strings and keep shortening the prefix until it matches all words.
+Iterate over other strings and keep shortening the prefix until it matches all words. */
 
 
-
-/* 1. Find the First Non-Repeating Character in a String
-Problem Statement:
-Given a string s, find the first non-repeating character and return its index. If it doesn’t exist, return -1.
-Example:
-Input: "leetcode"
-Output: 0 (The first non-repeating character is 'l' at index 0).
-Solution:  */
-
-
-
-
-//2. Check if a String is a Palindrome
+///2. Check if a String is a Palindrome
 //Problem Statement:
 //Given a string s, return true if it is a palindrome, ignoring case and non-alphanumeric characters.
 //Example:
 //Input: "A man, a plan, a canal: Panama"
 //Output: true
 //Solution:
+
 class PalindromeChecker {
-    public boolean isPalindrome(String s) {
+    boolean isPalindrome(String s) {
         String cleaned = s.replaceAll("[^a-zA-Z0-9]", "").toLowerCase();
-        int left = 0, right = cleaned.length() - 1;
-        while (left < right) {
-            if (cleaned.charAt(left) != cleaned.charAt(right)) {
-                return false;
-            }
-            left++;
-            right--;
-        }
-        return true;
+        return new StringBuilder(cleaned).reverse().toString().equals(cleaned);
+    }
+
+    public static void main(String[] args) {
+//        System.out.println(new PalindromeChecker().isPalindrome("A man, a plan, a canal: Panama"));
+        PalindromeChecker pc = new PalindromeChecker();
+        System.out.println(pc.isPalindrome("man"));
     }
 }
 
 
-//3. Implement Binary Search
+///3. Implement Binary Search
 //Problem Statement:
 //Given a sorted array of integers and a target value, return the index of the target if found. Otherwise, return -1.
 //Example:
@@ -353,10 +357,15 @@ class BinarySearch {
         }
         return -1;
     }
+
+    public static void main(String[] args) {
+        BinarySearch bs = new BinarySearch();
+        System.out.println(bs.search(new int[]{21, 42}, 42)); // Should print 1
+    }
 }
 
 
-//4. Remove Duplicates from a Sorted Array
+///4. Remove Duplicates from a Sorted Array
 //Problem Statement:
 //Given a sorted array nums, remove the duplicates in-place such that each unique element appears only once.
 //        Example:
@@ -375,10 +384,15 @@ class RemoveDuplicates {
         }
         return index;
     }
+
+    public static void main(String[] args) {
+        RemoveDuplicates rd = new RemoveDuplicates();
+        System.out.println(rd.removeDuplicates(new int[]{10,29}));
+    }
 }
 
 
-//5. Find the Majority Element
+///5. Find the Majority Element
 //Problem Statement:
 //Given an array nums, return the majority element (an element that appears more than n/2 times).
 //Example:
@@ -395,10 +409,15 @@ class MajorityElement {
         }
         return -1;
     }
+
+    public static void main(String[] args) {
+        MajorityElement me = new MajorityElement();
+        System.out.println(me.majorityElement(new int[]{10, 20,30}));
+    }
 }
 
 
-//6. Reverse an Integer
+///6. Reverse an Integer
 //Problem Statement:
 //Given a signed 32-bit integer x, return its reversed digits. If reversing causes overflow, return 0.
 //Example:
@@ -417,10 +436,15 @@ class ReverseInteger {
         }
         return rev;
     }
+
+    public static void main(String[] args) {
+        ReverseInteger ri = new ReverseInteger();
+        System.out.println(ri.reverse(10));
+    }
 }
 
-
-/* 8. Check if an Array is Sorted and Rotated
+/// 8. Check if an Array is Sorted and Rotated
+/*
 Problem Statement:
 Given an array nums, check if it was originally sorted in non-decreasing order but then rotated.
         Example:
@@ -432,15 +456,20 @@ class CheckRotatedSorted {
     public boolean check(int[] nums) {
         int count = 0;
         for (int i = 0; i < nums.length; i++) {
-            if (nums[i] > nums[(i + 1) % nums.length]) count++;
-            if (count > 1) return false;
+            if (nums[i] > nums[(i + 1) % nums.length] && ++count > 1) return false;
         }
         return true;
+    }
+
+    public static void main(String[] args) {
+        CheckRotatedSorted crs = new CheckRotatedSorted();
+        System.out.println(crs.check(new int[]{10, 20, 30})); // Example test
     }
 }
 
 
-//9. Find the Intersection of Two Arrays
+
+///9. Find the Intersection of Two Arrays
 //Problem Statement:
 //Given two integer arrays nums1 and nums2, return their intersection (common elements).
 //Example:
@@ -451,19 +480,19 @@ class CheckRotatedSorted {
 class IntersectionArrays {
     public int[] intersection(int[] nums1, int[] nums2) {
         HashSet<Integer> set = new HashSet<>();
-        HashSet<Integer> result = new HashSet<>();
         for (int num : nums1) set.add(num);
-        for (int num : nums2) if (set.contains(num)) result.add(num);
-        return result.stream().mapToInt(Integer::intValue).toArray();
+        return Arrays.stream(nums2).distinct().filter(set::contains).toArray();
+    }
+
+    public static void main(String[] args) {
+        IntersectionArrays is = new IntersectionArrays();
+        System.out.println(is.intersection(new int[]{1,2,2,3}, new int[]{2, 2}));
     }
 }
 
 
-
-
-
-
-/*         1. Find the Second Largest Number in an Array
+/// 1. Find the Second Largest Number in an Array
+/*
 Problem Statement:
 Given an array of integers, return the second largest number.
 Example:
@@ -484,10 +513,15 @@ class SecondLargest {
         }
         return second == Integer.MIN_VALUE ? -1 : second;
     }
+
+    public static void main(String[] args) {
+        SecondLargest SL = new SecondLargest();
+        System.out.println(SL.secondLargest(new int[]{10,20,30}));
+    }
 }
 
-
-/* 2. Merge Two Sorted Arrays Without Extra Space
+/// 2. Merge Two Sorted Arrays Without Extra Space
+/*
 Problem Statement:
 Given two sorted arrays, merge them into one sorted array without using extra space.
         Example:
@@ -499,10 +533,10 @@ Output: [1, 2, 3, 4, 5, 6, 7, 8]
 Solution: */
 
 class MergeSortedArrays {
-    public void merge(int[] nums1, int[] nums2) {
-        int m = nums1.length, n = nums2.length;
+    public void merge(int[] nums1, int m, int[] nums2, int n) {
         int i = m - 1, j = n - 1, k = m + n - 1;
 
+        // Merge nums2 into nums1 from the end
         while (i >= 0 && j >= 0) {
             if (nums1[i] > nums2[j]) {
                 nums1[k--] = nums1[i--];
@@ -511,14 +545,35 @@ class MergeSortedArrays {
             }
         }
 
+        // If there are remaining elements in nums2, add them
         while (j >= 0) {
             nums1[k--] = nums2[j--];
         }
     }
+
+    public static void main(String[] args) {
+        MergeSortedArrays msa = new MergeSortedArrays();
+
+        int[] nums1 = new int[5];
+        nums1[0] = 20;
+        nums1[1] = 30;
+        nums1[2] = 40;
+
+        // nums2 array
+        int[] nums2 = {10, 20};
+
+        // Call merge
+        msa.merge(nums1, 3, nums2, 2);
+
+        // Print merged array
+        for (int num : nums1) {
+            System.out.print(num + " ");
+        }
+    }
 }
 
-
-/* 3. Find All Duplicates in an Array
+/// 3. Find All Duplicates in an Array
+/*
 Problem Statement:
 Given an array of integers, return all duplicate numbers.
         Example:
@@ -532,17 +587,15 @@ class FindDuplicates {
         Set<Integer> set = new HashSet<>();
         List<Integer> duplicates = new ArrayList<>();
 
-        for (int num : nums) {
-            if (!set.add(num)) {
-                duplicates.add(num);
-            }
-        }
+        for (int num : nums)
+            if (!set.add(num)) duplicates.add(num);
+
         return duplicates;
     }
 }
 
-
-/* 4. Find the Maximum Subarray Sum (Kadane’s Algorithm)
+/// 4. Find the Maximum Subarray Sum (Kadane’s Algorithm)
+/*
 Problem Statement:
 Given an integer array, find the contiguous subarray with the largest sum.
         Example:
