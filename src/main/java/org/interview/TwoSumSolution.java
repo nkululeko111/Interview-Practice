@@ -592,6 +592,11 @@ class FindDuplicates {
 
         return duplicates;
     }
+
+    public static void main(String[] args) {
+        FindDuplicates  findDuplicates = new FindDuplicates();
+        System.out.println(findDuplicates.findDuplicates(new int[]{10}));
+    }
 }
 
 /// 4. Find the Maximum Subarray Sum (Kadane’s Algorithm)
@@ -612,10 +617,15 @@ class MaxSubarray {
         }
         return maxSum;
     }
+
+    public static void main(String[] args) {
+        MaxSubarray maxSubarray = new MaxSubarray();
+        System.out.println(maxSubarray.maxSubArray(new int[]{30}));
+    }
 }
 
+///5. Check if Two Strings are Anagrams
 /*
-5. Check if Two Strings are Anagrams
 Problem Statement:
 Given two strings, return true if they are anagrams.
         Example:
@@ -633,10 +643,15 @@ class AnagramCheck {
         Arrays.sort(str2);
         return Arrays.equals(str1, str2);
     }
+
+    public static void main(String[] args) {
+        AnagramCheck anagramCheck = new AnagramCheck();
+        System.out.println(anagramCheck.isAnagram("listen", "silent"));
+    }
 }
 
-
-/* 6. Reverse a Linked List
+/// 6. Reverse a Linked List
+/*
 Problem Statement:
 Given a singly linked list, reverse it and return the new head.
         Example:
@@ -661,10 +676,15 @@ class ReverseLinkedList {
         }
         return prev;
     }
+
+    public static void main(String[] args) {
+        ReverseLinkedList reverseLinkedList = new ReverseLinkedList();
+        System.out.println(reverseLinkedList.reverseList(new ListNode(10)));
+    }
 }
 
-
-/* 7. Find the Middle Node of a Linked List
+/// 7. Find the Middle Node of a Linked List
+/*
 Problem Statement:
 Given a linked list, find the middle node.
         Example:
@@ -681,9 +701,14 @@ class MiddleOfLinkedList {
         }
         return slow;
     }
+
+    public static void main(String[] args) {
+        MiddleOfLinkedList middleOfLinkedList = new MiddleOfLinkedList();
+        System.out.println(middleOfLinkedList.middleNode(new ListNode(15)));
+    }
 }
 
-
+/// 8. Find the Kth Largest Element in an Array
 //8. Find the Kth Largest Element in an Array
 //Problem Statement:
 //Given an array nums and an integer k, return the kth largest element.
@@ -703,10 +728,15 @@ class KthLargest {
         }
         return minHeap.poll();
     }
+
+    public static void main(String[] args) {
+        KthLargest kthLargest = new KthLargest();
+        System.out.println(kthLargest.findKthLargest(new int[]{20},10));
+    }
 }
 
 
-//9. Implement a Queue Using Two Stacks
+/// 9. Implement a Queue Using Two Stacks
 //Problem Statement:
 //Implement a queue using two stacks.
 //Solution:
@@ -740,10 +770,15 @@ class MyQueue {
     public boolean empty() {
         return input.isEmpty() && output.isEmpty();
     }
+
+    public static void main(String[] args) {
+
+    }
 }
 
 
-/* 10. Detect a Cycle in a Linked List
+/// 10. Detect a Cycle in a Linked List
+/*
 Problem Statement:
 Given a linked list, return true if there is a cycle, otherwise false.
 Solution: */
@@ -757,20 +792,22 @@ class DetectCycle {
         }
         return false;
     }
+
+    public static void main(String[] args) {
+        DetectCycle detectCycle = new DetectCycle();
+        System.out.println(detectCycle.hasCycle(new ListNode(10)));
+    }
 }
 
-
-/*         1. Print the First N Fibonacci Numbers
-📌 (Basic Iteration & Recursion)
+///  1. Print the First N Fibonacci Numbers
+/*
         🔹 Problem:
 Write a function that prints the first N Fibonacci numbers.
         🔹 Example:
 Input: N = 6
-Output: 0, 1, 1, 2, 3, 5
-        🔹 Iterative Solution: */
+Output: 0, 1, 1, 2, 3, 5 */
 
-
-//🔹 Recursive Solution:
+///🔹 Recursive Solution:
 class FibonacciSeriesRecursive {
     public static void printFibonacci(int n, int a, int b) {
         if (n == 0) return;
@@ -783,18 +820,16 @@ class FibonacciSeriesRecursive {
     }
 }
 
-
-/* 2. Find the Nth Fibonacci Number
+/// 2. Find the Nth Fibonacci Number
+/*
 📌 (Standard Interview Question)
         🔹 Problem:
 Find the Nth Fibonacci number using recursion and iteration.
 🔹 Example:
 Input: N = 6
 Output: 8
-        🔹 Iterative Solution: */
 
-
-//🔹 Recursive Solution:
+//🔹 Recursive Solution: */
 class FibonacciNthRecursive {
     public static int findNthFib(int n) {
         if (n <= 1) return n;
@@ -806,31 +841,15 @@ class FibonacciNthRecursive {
     }
 }
 
-
-/* 3. Check if a Number is a Fibonacci Number
+/// 3. Check if a Number is a Fibonacci Number
+/*
 📌 (Advanced Fibonacci Question)
         🔹 Problem:
 Given a number X, check if it is a Fibonacci number.
 🔹 Example:
 Input: X = 8
 Output: true
-        🔹 Iterative Solution: */
-class FibonacciCheck {
-    public static boolean isFibonacci(int x) {
-        int a = 0, b = 1;
-        while (b < x) {
-            int temp = a + b;
-            a = b;
-            b = temp;
-        }
-        return b == x || a == x;
-    }
-
-    public static void main(String[] args) {
-        System.out.println(isFibonacci(8));  // true
-        System.out.println(isFibonacci(10)); // false
-    }
-}
+ */
 
 //🔹 Recursive Solution:
 class FibonacciCheckRecursive {
@@ -846,18 +865,18 @@ class FibonacciCheckRecursive {
     }
 }
 
-
-/* 4. Sum of First N Fibonacci Numbers
+///4. Sum of First N Fibonacci Numbers
+/*
 📌 (Mathematical Approach)
         🔹 Problem:
 Find the sum of the first N Fibonacci numbers.
 🔹 Example:
 Input: N = 6
 Output: 0 + 1 + 1 + 2 + 3 + 5 = 12
-        🔹 Iterative Solution: */
+        */
 
 
-//🔹 Recursiveive Solution:
+//🔹 Recursive Solution:
 class FibonacciSumRecursive {
     public static int sumFibonacci(int n) {
         if (n <= 0) return 0;
@@ -874,8 +893,8 @@ class FibonacciSumRecursive {
     }
 }
 
-
-/* 5. Count Fibonacci Numbers in a Given Range
+/// 5. Count Fibonacci Numbers in a Given Range
+/*
 📌 (Variation of Fibonacci Problem)
         🔹 Problem:
 Given a range [low, high], count how many Fibonacci numbers exist in that range.
