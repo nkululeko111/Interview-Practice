@@ -573,7 +573,7 @@ class MergeSortedArrays {
 }
 
 /// 3. Find All Duplicates in an Array
-/*
+/* ..
 Problem Statement:
 Given an array of integers, return all duplicate numbers.
         Example:
